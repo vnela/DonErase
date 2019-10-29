@@ -19,7 +19,7 @@ public class KyselyController {
 	private QuestionRepository qRepository;
 	
 	// RESTful service to get all questions
-    @RequestMapping(value="/kysely", method = RequestMethod.GET)
+    @RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionListRest() {	
         return (List<Question>) qRepository.findAll();
 
