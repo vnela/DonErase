@@ -14,7 +14,11 @@ public class Question {
 	private String title;
 	private String answer;
 	
-	
+	public Question(String title, String answer) {
+		super();
+		this.title = title;
+		this.answer = answer;
+	}
 	public Question(Long id, String title, String answer) {
 		super();
 		this.id = id;
