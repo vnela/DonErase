@@ -19,13 +19,7 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 		
 	</properties>
-	
-	<configuration>
-  <processTypes>
-     <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
-  </processTypes>
-</configuration>
-	
+
 
 	<dependencies>
 		<dependency>
