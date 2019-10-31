@@ -17,7 +17,15 @@
 	<properties>
 		<java.version>11</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		
 	</properties>
+	
+	<configuration>
+  <processTypes>
+     <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+  </processTypes>
+</configuration>
+	
 
 	<dependencies>
 		<dependency>
@@ -58,6 +66,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			 <plugin>
+        <groupId>com.heroku.sdk</groupId>
+        <artifactId>heroku-maven-plugin</artifactId>
+        <version>2.0.13</version>
+      </plugin>
 		</plugins>
 	</build>
 
