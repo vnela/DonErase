@@ -4,41 +4,56 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 
 public class Question {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long qid;
 	private String title;
-	private String answer;
+	private String type;
 	
-	public Question(String title, String answer) {
-		super();
-		this.title = title;
-		this.answer = answer;
-	}
-	public Question(Long id, String title, String answer) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.answer = answer;
-	}
+	@ManyToOne
+	@JoinColumn(name = "aid")
+	private Answer answer;
 	
 	public Question() {
 		super();
-		this.id = null;
+		this.qid = null;
 		this.title = null;
-		this.answer = null;
+		this.type = null;
 	}
 
-	public Long getId() {
-		return id;
+	public Question(String title, String type) {
+		this.title = title;
+		this.type = type;
+	}
+	
+	public Question(Long qid, String title, String type) {
+		super();
+		this.qid = qid;
+		this.title = title;
+		this.type = type;
+	}
+	
+
+	public Question(String title, String type, Answer answer) {
+		super();
+		this.title = title;
+		this.type = type;
+		this.answer = answer;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+	public Long getQid() {
+		return qid;
+	}
+
+	public void setQid(Long qid) {
+		this.qid = qid;
 	}
 
 	public String getTitle() {
@@ -49,19 +64,26 @@ public class Question {
 		this.title = title;
 	}
 
-	public String getAnswer() {
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Answer getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(String answer) {
+	public void setAnswer(Answer answer) {
 		this.answer = answer;
 	}
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", title=" + title + ", answer=" + answer + "]";
+		return "Question [qid=" + qid + ", title=" + title + ", type=" + type + ", answer=" + answer + "]";
 	}
 
-	
 
 }

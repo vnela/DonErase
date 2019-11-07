@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import ohjelmistoprojekti.kyselysovellus.domain.AnswerRepository;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
 import ohjelmistoprojekti.kyselysovellus.domain.QuestionRepository;
 
@@ -18,7 +20,7 @@ public class KyselysovellusApplication {
 	}
 
 	@Bean
-	public CommandLineRunner questionDemo(QuestionRepository qRepository) {
+	public CommandLineRunner questionDemo(QuestionRepository qRepository, AnswerRepository aRepository) {
 		return (args) -> {
 			log.info("Save some questions");
 
