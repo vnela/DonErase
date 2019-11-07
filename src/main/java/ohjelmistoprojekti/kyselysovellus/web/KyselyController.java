@@ -30,4 +30,11 @@ public class KyselyController {
     public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long questionId) {	
     	return qRepository.findById(questionId);
     } 
+    
+    // RESTful service to post question/answer
+    @RequestMapping(value="/questions", method = RequestMethod.POST)
+    public @ResponseBody List<Question> questionanswerListRest() {	
+        return (List<Question>) qRepository.findAll();
+    
+    }
 }
