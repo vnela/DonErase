@@ -1,4 +1,4 @@
-package ohjelmistoprojekti.kyselysovellus.domain;
+package ohjelmistoprojekti.kyselysovellus;
 
 
 import com.zaxxer.hikari.*;
