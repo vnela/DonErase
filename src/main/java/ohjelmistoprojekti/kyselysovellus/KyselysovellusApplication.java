@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import ohjelmistoprojekti.kyselysovellus.domain.AnswerRepository;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
-import ohjelmistoprojekti.kyselysovellus.domain.QuestionRepository;
+import ohjelmistoprojekti.kyselysovellus.repositories.AnswerRepository;
+import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
 
 @SpringBootApplication
 public class KyselysovellusApplication {

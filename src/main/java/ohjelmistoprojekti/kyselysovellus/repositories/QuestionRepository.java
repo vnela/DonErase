@@ -1,8 +1,10 @@
-package ohjelmistoprojekti.kyselysovellus.domain;
+package ohjelmistoprojekti.kyselysovellus.repositories;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+
+import ohjelmistoprojekti.kyselysovellus.domain.Question;
 
 public interface QuestionRepository extends CrudRepository<Question, Long> {
 
