@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
-import ohjelmistoprojekti.kyselysovellus.domain.QuestionRepository;
+import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
 
 @RestController
-public class KyselyController {
+public class QuestionController {
 	@Autowired
 	private QuestionRepository qRepository;
 	
-	KyselyController(QuestionRepository repository){
+	QuestionController(QuestionRepository repository){
 		this.qRepository = repository;
 		
 	}
@@ -47,6 +47,7 @@ public class KyselyController {
         return (List<Question>) qRepository.save(newQuestion);
     
     }
+   
     
     // RESTful service to update question/answer
     @PutMapping("/questions/{id}")
