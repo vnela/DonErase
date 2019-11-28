@@ -15,6 +15,7 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long aid;
 	private String input;
+	private Long qid;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "answer")
 	private List<Question> questions;
@@ -23,6 +24,7 @@ public class Answer {
 		super();
 		this.aid = null;
 		this.input = null;
+		this.qid = null;
 	}
 
 	public Answer(String input) {
@@ -30,10 +32,17 @@ public class Answer {
 		this.input = input;
 	}
 
-	public Answer(Long aid, String input) {
+	public Answer(Long qid, String input) {
+		super();
+		this.qid = qid;
+		this.input = input;
+	}
+	
+	public Answer(Long aid, String input, Long qid) {
 		super();
 		this.aid = aid;
 		this.input = input;
+		this.qid = qid;
 	}
 
 	public Long getAid() {
@@ -43,6 +52,7 @@ public class Answer {
 	public void setAid(Long aid) {
 		this.aid = aid;
 	}
+	
 
 	public String getInput() {
 		return input;
@@ -50,6 +60,14 @@ public class Answer {
 
 	public void setInput(String input) {
 		this.input = input;
+	}
+	
+	public Long getQid() {
+		return qid;
+	}
+
+	public void setQid(Long qid) {
+		this.qid = qid;
 	}
 
 	@Override

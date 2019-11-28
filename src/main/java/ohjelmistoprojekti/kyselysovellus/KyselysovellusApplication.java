@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import ohjelmistoprojekti.kyselysovellus.domain.Answer;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
 import ohjelmistoprojekti.kyselysovellus.repositories.AnswerRepository;
 import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
@@ -33,6 +34,9 @@ public class KyselysovellusApplication {
 			for (Question question : qRepository.findAll()) {
 				log.info(question.toString());
 			}
+			
+			//aRepository.save(new Answer("ensimmäinen vastaus"));
+			//aRepository.save(new Answer(toinen vastaus"));
 
 		};
 	}

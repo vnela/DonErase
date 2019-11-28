@@ -45,11 +45,16 @@ public class AnswerController {
     	return aRepository.findById(id);
     } 
     
-    // RESTful service to get answer by id
+    /*
     @GetMapping("/questions/{id}/answers")
     QuestionRepository oneAnswerbyQ(@PathVariable Long id) {
     	
     	return (QuestionRepository) qRepository.findById(id).get();
+    } */
+    
+    @GetMapping("/questions/{id}/answers")
+    Optional<Question> one(@PathVariable Long id) {	
+    	return qRepository.findById(id);
     } 
     
     
@@ -58,7 +63,26 @@ public class AnswerController {
 	@PostMapping("/answers")
     List<Answer> newAnswer(@RequestBody Answer newAnswer) {	
         return (List<Answer>) aRepository.save(newAnswer);
+    }
     
+    @PostMapping("/questions/{id}")
+    Answer postAnswer(@RequestBody Answer newAnswer, @PathVariable Long id){
+    	
+    	//newAnswer.setInput(newAnswer.getInput());
+    	newAnswer.setQid(id);
+    	return aRepository.save(newAnswer);
+    	/*
+    	return aRepository.findById(id)
+    			.map(answer ->{
+    				answer.setInput(newAnswer.getInput());
+    				return aRepository.save(answer);
+    				
+    			})
+    			.orElseGet(() -> {
+    				newAnswer.setQid(id);
+    				return aRepository.save(newAnswer);
+    			});*/
+  	
     }
    
     

@@ -21,6 +21,8 @@ import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
 
 @RestController
 public class QuestionController {
+	
+	
 	@Autowired
 	private QuestionRepository qRepository;
 	
