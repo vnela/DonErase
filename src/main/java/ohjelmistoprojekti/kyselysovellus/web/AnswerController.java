@@ -1,5 +1,7 @@
 package ohjelmistoprojekti.kyselysovellus.web;
 
+import java.awt.PageAttributes.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ohjelmistoprojekti.kyselysovellus.domain.Answer;
+import ohjelmistoprojekti.kyselysovellus.domain.AnswerChoiceLink;
+import ohjelmistoprojekti.kyselysovellus.domain.AnswerValuetoQuestion;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
 import ohjelmistoprojekti.kyselysovellus.repositories.AnswerRepository;
 import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
@@ -25,11 +29,7 @@ import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
 public class AnswerController {
 	@Autowired
 	private AnswerRepository aRepository;
-	
-	AnswerController(AnswerRepository arepository){
-		this.aRepository = arepository;
-	}
-	
+		
 	@Autowired
 	private QuestionRepository qRepository;
 	
@@ -45,11 +45,16 @@ public class AnswerController {
     	return aRepository.findById(id);
     } 
     
-    // RESTful service to get answer by id
+    /*
     @GetMapping("/questions/{id}/answers")
     QuestionRepository oneAnswerbyQ(@PathVariable Long id) {
     	
     	return (QuestionRepository) qRepository.findById(id).get();
+    } */
+    
+    @GetMapping("/questions/{id}/answers")
+    Optional<Question> one(@PathVariable Long id) {	
+    	return qRepository.findById(id);
     } 
     
     
@@ -58,26 +63,53 @@ public class AnswerController {
 	@PostMapping("/answers")
     List<Answer> newAnswer(@RequestBody Answer newAnswer) {	
         return (List<Answer>) aRepository.save(newAnswer);
-    
     }
-   
     
-    // RESTful service to update answer
-    @PutMapping("/answers/{id}")
-    Answer updateAnswer(@RequestBody Answer newAnswer, @PathVariable Long id){
+ 
+  
+    @PostMapping("/api/sendAnswer")
     	
-    	return aRepository.findById(id)
-    			.map(answer ->{
-    				answer.setInput(newAnswer.getInput());
-    				return aRepository.save(answer);
+    	public Answer sendAnswer(@RequestBody AnswerValuetoQuestion requestAnswer) {
+    		
+    		String answerValue = requestAnswer.getAnswerValue();
+    		
+    		Long qid = requestAnswer.getqId();
+    		
+    		Question question = qRepository.findByQid(qid).get(0);
     				
-    			})
-    			.orElseGet(() -> {
-    				newAnswer.setAid(id);
-    				return aRepository.save(newAnswer);
-    			});
-  	
-    }
+    		Answer answer = new Answer(answerValue, question);
+    		
+    		aRepository.save(answer);
+    		
+    		return answer;
+    	}
+    	
+    	@PostMapping("/api/Answers")
+    		
+    							
+    		public List<Answer> createAnswerList(@RequestBody List<AnswerValuetoQuestion> requestAnswers) {
+    		
+    		List<Answer> answers = new ArrayList<Answer>();
+    					
+    			for (int i = 0; i < requestAnswers.size(); i++) {
+    				
+    				String answerValue = requestAnswers.get(i).getAnswerValue();
+    				
+    				Long qid = requestAnswers.get(i).getqId();
+    				
+    				Question question = qRepository.findByQid(qid).get(0);
+    						
+    				Answer answer = new Answer(answerValue, question);
+    				
+    				aRepository.save(answer);
+    				
+    				answers.add(answer);
+    			}
+    			return answers;
+    		}
+    	
+    
+  
     
     // RESTful service to delete answer
     @DeleteMapping("/answers/{id}")

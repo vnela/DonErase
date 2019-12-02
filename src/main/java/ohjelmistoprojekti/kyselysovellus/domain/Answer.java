@@ -1,39 +1,36 @@
+ 
 package ohjelmistoprojekti.kyselysovellus.domain;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Answer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long aid;
-	private String input;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "answer")
-	private List<Question> questions;
+	public Long aid;
+	public String answerValue;
+	
+	@ManyToOne
+	@JoinColumn(name = "qId")
+	public Question question;
 
 	public Answer() {
 		super();
-		this.aid = null;
-		this.input = null;
+		
 	}
 
-	public Answer(String input) {
+	public Answer(String answerValue, Question question) {
 		super();
-		this.input = input;
-	}
-
-	public Answer(Long aid, String input) {
-		super();
-		this.aid = aid;
-		this.input = input;
+		this.answerValue = answerValue;
+		this.question = question;
+		
 	}
 
 	public Long getAid() {
@@ -44,17 +41,21 @@ public class Answer {
 		this.aid = aid;
 	}
 
-	public String getInput() {
-		return input;
+	public String getAnswerValue() {
+		return answerValue;
 	}
 
-	public void setInput(String input) {
-		this.input = input;
+	public void setAnswerValue(String answerValue) {
+		this.answerValue = answerValue;
 	}
 
-	@Override
-	public String toString() {
-		return "Answer [aid=" + aid + ", input=" + input + "]";
+	public Question getQuestion() {
+		return question;
 	}
 
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 }
+
+	
