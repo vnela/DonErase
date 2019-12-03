@@ -59,7 +59,7 @@ public class QuestionController {
     			.map(question ->{
     				question.setTitle(newQuestion.getTitle());
     				question.setType(newQuestion.getType());
-    				question.setAnswer(newQuestion.getAnswer());
+    				//question.setAnswer(newQuestion.getAnswer());
     				return qRepository.save(question);
     				
     			})

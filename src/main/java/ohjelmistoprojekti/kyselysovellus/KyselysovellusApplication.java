@@ -25,19 +25,21 @@ public class KyselysovellusApplication {
 		return (args) -> {
 			log.info("Save some questions");
 
-			qRepository.save(new Question("Minkä vuoden opiskelija olet?", ""));
-			qRepository.save(new Question("Mihin profiiliin olet suuntautumassa/suuntautunut?", ""));
-			qRepository.save(new Question("Miten mielestäsi HOPS:iin perehdytettiin opintojen alussa?", ""));
-			qRepository.save(new Question("Minkälaisia ongelmia olet kohdannut opintojen edetessä HOPS:iin liittyen?", ""));
-			qRepository.save(new Question("Minkälaisia ominaisuuksia HOPS:in luomiseen voitaisiin lisätä?", ""));
+			qRepository.save(new Question("1. Minkä vuoden opiskelija olet?", ""));
+			qRepository.save(new Question("2. Mihin profiiliin olet suuntautumassa/suuntautunut?", ""));
+			qRepository.save(new Question("3. Miten mielestäsi HOPS:iin perehdytettiin opintojen alussa?", ""));
+			qRepository.save(new Question("4. Minkälaisia ongelmia olet kohdannut opintojen edetessä HOPS:iin liittyen?", ""));
+			qRepository.save(new Question("5. Minkälaisia ominaisuuksia HOPS:in luomiseen voitaisiin lisätä?", ""));
 			log.info("fetch all questions");
 			for (Question question : qRepository.findAll()) {
 				log.info(question.toString());
 			}
 			
-			//aRepository.save(new Answer("ensimmäinen vastaus"));
-			//aRepository.save(new Answer(toinen vastaus"));
-
+			/*
+			aRepository.save(new Answer("yksi vastaus (CommandLineRunner)", (long) 1));
+			aRepository.save(new Answer("toinen vastaus (CommandLineRunner)", (long) 1));
+			aRepository.save(new Answer("tämä vastaus ei kai kuulu mihinkään kysymykseen (CommandLineRunner)"));
+			*/
 		};
 	}
 }
