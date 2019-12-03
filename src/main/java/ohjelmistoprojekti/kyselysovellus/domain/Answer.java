@@ -31,7 +31,7 @@ public class Answer {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "answer")
 	private List<Question> questions;*/
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "qid", nullable = false)
     private Question question;
 
