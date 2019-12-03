@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,34 +34,63 @@ public class AnswerController {
 	@Autowired
 	private QuestionRepository qRepository;
 	
-	// RESTful service to get all questions
+	//
     @GetMapping("/answers")
     List<Answer> all() {
+    	System.out.println("tuleeko kaikki vastaukset???");
+    	//System.out.println(aRepository.findAll()); 	
 		return (List<Answer>) aRepository.findAll();
 	}
     
-    // RESTful service to get answer by id
+  
     @GetMapping("/answers/{id}")
     Optional<Answer> oneAnswer(@PathVariable Long id) {	
     	return aRepository.findById(id);
     } 
     
-    // RESTful service to get answer by id
+    
     @GetMapping("/questions/{id}/answers")
     QuestionRepository oneAnswerbyQ(@PathVariable Long id) {
-    	
+    	System.out.println("getti, toimiiko?");
     	return (QuestionRepository) qRepository.findById(id).get();
     } 
     
+    /*
+    //testausta1: etsi kaikki vastaukset kysymyksen id:n perusteella
+    //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation
+   /@GetMapping("/questions/{id}/answers")
+    List<Answer> one(@PathVariable Long id) {	
+    	return aRepository.findByQuestionId(id);
+    }*/
+    
+    /*
+  //testausta2: etsi kaikki vastaukset kysymyksen id:n perusteella
+    @GetMapping("/questions/{qid}/answers")
+    public List<Answer> getAnswersByQuestionId(@PathVariable (value = "qid") Long qid) {
+        return aRepository.findByQid(qid);
+    }*/
+    
+    //testausta3: lisätään uusi vastaus kysymykseen
+    @PostMapping("/questions/{qid}")
+    public Answer createAnswer(@PathVariable (value = "qid") Long qid, @RequestBody Answer newAnswer) {
+    	System.out.println("toimiiko?");
+        return qRepository.findById(qid).map(question -> {
+        	newAnswer.setQuestion(question);
+            return aRepository.save(newAnswer);
+        }).orElseThrow(() -> new ResourceNotFoundException("qid " + qid + " not found"));
+    }
+    
+    
+
+    
+   
     
     // RESTful service to post answer
     @SuppressWarnings("unchecked")
 	@PostMapping("/answers")
     List<Answer> newAnswer(@RequestBody Answer newAnswer) {	
         return (List<Answer>) aRepository.save(newAnswer);
-    
     }
-   
     
     // RESTful service to update answer
     @PutMapping("/answers/{id}")
