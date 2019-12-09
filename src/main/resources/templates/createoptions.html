@@ -12,23 +12,21 @@
 	<div>
 	
 		<div class="col-md-4">
-		<form action="#" th:action="@{/save}"  th:object= ${question} method="post">
+		<form action="#" th:action="@{/saveoption}"  th:object= ${answerChoiceLink} method="post">
 			
 			<label for="title">Title </label>
-			<input type="text" id="name" th:field="${question.title}" class="form-control"/>
+			<input type="text" id="name" th:field="*{value}" class="form-control"/>
+			<input type="hidden" th:field="*{qid}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px"></div>
 			
-			
-			<label>Choose Type:</label>
-			 <select th:field="${question.type}">
-			 	<option value="monivalinta">monivalinta</option>
-			 	<option value="avoin">avoin</option>
-			</select>
 			<div style="clear: both; display: block; height: 10px"></div>
 			<input type="submit" class="btn btn-primary" value="Save"/> 
 		
 		</form>
 	    </div>
+	    
+	    
+	    
     </div>
 	
 </body>

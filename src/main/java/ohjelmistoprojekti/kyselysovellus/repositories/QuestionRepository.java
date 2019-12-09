@@ -10,5 +10,5 @@ public interface QuestionRepository extends CrudRepository<Question, Long> {
 
 	 List<Question> findByTitle(String title);
 	 List<Question> findByQid(long qid);
-	List<Question> findAllByType(String type);
+	 List<Question> findAllByType(String type);
 }

@@ -1,11 +1,14 @@
 package ohjelmistoprojekti.kyselysovellus.domain;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+
 
 @Entity
 public class AnswerChoice {
@@ -15,7 +18,7 @@ public class AnswerChoice {
 	private String value;
 	
 	@ManyToOne
-	@JoinColumn(name = "qId")
+	@JoinColumn(name = "qid")
 	public Question question;
 
 	public AnswerChoice() {
@@ -27,7 +30,6 @@ public class AnswerChoice {
 		this.value = value;
 		this.question = question;
 	}
-
 	public Long getAchoiceId() {
 		return achoiceId;
 	}
