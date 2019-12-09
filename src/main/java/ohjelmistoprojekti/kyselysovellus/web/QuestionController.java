@@ -31,12 +31,14 @@ public class QuestionController {
 	@CrossOrigin(origins = "https://localhost:8080")
 	@RequestMapping(value="/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question> getQuestion(){
+		System.out.println("toimiiko?");
 		return (List<Question>) qRepository.findAll();
 	}
 	
 	//RESTful service to get one questions
-	@RequestMapping(value="/question/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/questions/{id}", method=RequestMethod.GET)
 	public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long id) {
+		System.out.println("toimiiko?HALOOOOOAASKDKASDKAS");
 		return qRepository.findById(id);
 	}
 	
@@ -53,8 +55,8 @@ public class QuestionController {
 	}
 	
 	//RESTful service to get one answer choices by id
-	@RequestMapping(value="/answerChoice/{answerid}", method=RequestMethod.GET)
-	public @ResponseBody Optional<AnswerChoice> findAnswerRest(@PathVariable("answerid") Long id) {
+	@RequestMapping(value="/answerChoice/{id}", method=RequestMethod.GET)
+	public @ResponseBody Optional<AnswerChoice> findAnswerRest(@PathVariable("acid") Long id) {
 		return acRepository.findById(id);
 	}
 	
@@ -65,6 +67,11 @@ public class QuestionController {
 	    model.addAttribute("option", new AnswerChoice());
 		return "createquestion";
 	}
+	
+	
+	
+	//Thymeleaf methods
+	
 	
 	//Save method for new question
 	@RequestMapping(value="/save", method=RequestMethod.POST)

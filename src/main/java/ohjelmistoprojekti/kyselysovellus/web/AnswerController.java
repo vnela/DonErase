@@ -40,13 +40,13 @@ public class AnswerController {
 		consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public Answer submitAnswer(@RequestBody AnswerValuetoQuestion requestAnswer) {
 		
-		String answerValue = requestAnswer.getAnswerValue();
+		String answerInput = requestAnswer.getAnswerInput();
 		
-		Long qid = requestAnswer.getqId();
+		Long qid = requestAnswer.getQid();
 		
 		Question question = qRepository.findByQid(qid).get(0);
 				
-		Answer answer = new Answer(answerValue, question);
+		Answer answer = new Answer(answerInput, question);
 		
 		aRepository.save(answer);
 		
@@ -63,9 +63,9 @@ public class AnswerController {
 					
 			for (int i = 0; i < requestAnswers.size(); i++) {
 				
-				String answerValue = requestAnswers.get(i).getAnswerValue();
+				String answerValue = requestAnswers.get(i).getAnswerInput();
 				
-				Long qid = requestAnswers.get(i).getqId();
+				Long qid = requestAnswers.get(i).getQid();
 				
 				Question question = qRepository.findByQid(qid).get(0);
 						

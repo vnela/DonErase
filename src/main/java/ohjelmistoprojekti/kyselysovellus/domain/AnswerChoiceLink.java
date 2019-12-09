@@ -2,22 +2,22 @@ package ohjelmistoprojekti.kyselysovellus.domain;
 
 public class AnswerChoiceLink {
 	private String value;
-	private Long qId;
+	private Long qid;
 	
 	public AnswerChoiceLink() {
 		super();
 	
 	}
 
-	public AnswerChoiceLink(Long qId) {
+	public AnswerChoiceLink(Long qid) {
 		super();
-		this.qId = qId;
+		this.qid = qid;
 	}
 
-	public AnswerChoiceLink(String value, Long qId) {
+	public AnswerChoiceLink(String value, Long qid) {
 		super();
 		this.value = value;
-		this.qId = qId;
+		this.qid = qid;
 	}
 
 	public String getValue() {
@@ -29,15 +29,15 @@ public class AnswerChoiceLink {
 	}
 
 	public Long getqId() {
-		return qId;
+		return qid;
 	}
 
 	public void setqId(Long qId) {
-		this.qId = qId;
+		this.qid = qId;
 	}
 
 	@Override
 	public String toString() {
-		return "AnswerChoiceLink [value=" + value + ", qId=" + qId + "]";
+		return "AnswerChoiceLink [value=" + value + ", qid=" + qid + "]";
 	}
 }

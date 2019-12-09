@@ -3,37 +3,37 @@ package ohjelmistoprojekti.kyselysovellus.domain;
 public class AnswerValuetoQuestion {
 	
 
-	private String answerValue;
-	private Long qId;
+	private String answerInput;
+	private Long qid;
 	
 	public AnswerValuetoQuestion() {
 		super();
 		
 	}
 
-	public AnswerValuetoQuestion(String answerValue, Long qId) {
+	public AnswerValuetoQuestion(String answerInput, Long qId) {
 		super();
-		this.answerValue = answerValue;
-		this.qId = qId;
+		this.answerInput = answerInput;
+		this.qid = qId;
 	}
 
-	public String getAnswerValue() {
-		return answerValue;
+	public String getAnswerInput() {
+		return answerInput;
 	}
 
-	public void setAnswerValue(String answerValue) {
-		this.answerValue = answerValue;
+	public void setAnswerInput(String answerInput) {
+		this.answerInput = answerInput;
 	}
 
-	public Long getqId() {
-		return qId;
+	public Long getQid() {
+		return qid;
 	}
 
-	public void setqId(Long qId) {
-		this.qId = qId;
+	public void setQd(Long qid) {
+		this.qid = qid;
 	}
 	@Override
 	public String toString() {
-		return "AnswerValuetoQuestion [answerValue=" + answerValue + ", qId=" + qId + "]";
+		return "AnswerValuetoQuestion [answerInput=" + answerInput + ", qid=" + qid + "]";
 	}
 }

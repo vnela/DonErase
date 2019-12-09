@@ -14,12 +14,12 @@ import javax.persistence.ManyToOne;
 public class AnswerChoice {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private Long achoiceId;
+	private Long acid;
 	private String value;
 	
 	@ManyToOne
 	@JoinColumn(name = "qid")
-	public Question question;
+	private Question question;
 
 	public AnswerChoice() {
 		
@@ -31,11 +31,11 @@ public class AnswerChoice {
 		this.question = question;
 	}
 	public Long getAchoiceId() {
-		return achoiceId;
+		return acid;
 	}
 
-	public void setAchoiceId(Long achoiceId) {
-		this.achoiceId = achoiceId;
+	public void setAchoiceId(Long acid) {
+		this.acid = acid;
 	}
 
 	public String getValue() {
@@ -56,7 +56,7 @@ public class AnswerChoice {
 
 	@Override
 	public String toString() {
-		return "AnswerChoice [achoiceId=" + achoiceId + ", value=" + value + ", question=" + question + "]";
+		return "AnswerChoice [acid=" + acid + ", value=" + value + ", question=" + question + "]";
 	}
 
 }

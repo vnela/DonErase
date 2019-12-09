@@ -14,21 +14,21 @@ import javax.persistence.ManyToOne;
 public class Answer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long aid;
-	public String answerValue;
+	private Long aid;
+	private String answerInput;
 	
 	@ManyToOne
-	@JoinColumn(name = "qId")
-	public Question question;
+	@JoinColumn(name = "qid")
+	private Question question;
 
 	public Answer() {
 		super();
 		
 	}
 
-	public Answer(String answerValue, Question question) {
+	public Answer(String answerInput, Question question) {
 		super();
-		this.answerValue = answerValue;
+		this.answerInput = answerInput;
 		this.question = question;
 		
 	}
@@ -41,12 +41,12 @@ public class Answer {
 		this.aid = aid;
 	}
 
-	public String getAnswerValue() {
-		return answerValue;
+	public String getInput() {
+		return answerInput;
 	}
 
-	public void setAnswerValue(String answerValue) {
-		this.answerValue = answerValue;
+	public void setInput(String answerInput) {
+		this.answerInput = answerInput;
 	}
 
 	public Question getQuestion() {
