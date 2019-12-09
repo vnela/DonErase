@@ -5,21 +5,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Muokkaa kysymystä</h1>
+	<h1>Kysymys</h1>
 
-	<form action="#" th:action="@{/editquestion}"  th:object= ${question} method="post">
-	<input type="hidden" th:field= "*{qid}" class="form-control"/>
+	<form action="#" th:action="@{/newquestion}"  th:object= ${question} method="post">
 	<p>Kysymys: <input type="text" th:field="${question.title}" /></p>
-		<label>Kysymyksen tyyppi:</label>
+
+	
+	<label>Kysymyksen tyyppi:</label>
 	<select th:field="${question.type}">
 			<option value="avoin">Avoin</option>
 			<option value="monivalinta">Monivalinta</option>
 			<option value="radio">Radio</option>
 		</select>
 	<br></br>
-	<input type="submit" value="Tallenna" />
+	<input type="submit" value="Lähetä" /> <input type="reset" value="Tyhjennä" />
 	</form>
     
-
 </body>
 </html>
