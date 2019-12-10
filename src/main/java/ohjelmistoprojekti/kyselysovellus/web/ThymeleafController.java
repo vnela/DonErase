@@ -1,7 +1,6 @@
 package ohjelmistoprojekti.kyselysovellus.web;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import ohjelmistoprojekti.kyselysovellus.domain.AnswerChoice;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
 import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
 
@@ -60,7 +57,6 @@ public class ThymeleafController {
 				
 		@RequestMapping(value = "/editquestion", method = RequestMethod.POST)
 		public String updateQuestion(@ModelAttribute Question question) {
-
 					qRepository.save(question);
 					return "redirect:/questionlist";
 		}	

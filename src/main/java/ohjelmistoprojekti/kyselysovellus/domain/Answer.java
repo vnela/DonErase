@@ -49,15 +49,6 @@ public class Answer {
 		this.answerInput = answerInput;
 	}
 	
-	/*
-	public Long getQid() {
-		return qid;
-	}
-
-	public void setQid(Long qid) {
-		this.qid = qid;
-	}*/
-	
 	
 	public Question getQuestion() {
 		return question;

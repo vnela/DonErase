@@ -61,12 +61,13 @@ public class KyselysovellusApplication {
 			acRepository.save(new AnswerChoice("ICT-infrastruktuuri",qRepository.findByQid(2).get(0)));
 			acRepository.save(new AnswerChoice("ICT ja liiketoiminta",qRepository.findByQid(2).get(0)));
 			
-			//3
+		
+			/*//3
 			acRepository.save(new AnswerChoice("",qRepository.findByQid(3).get(0)));
 			//4
 			acRepository.save(new AnswerChoice("",qRepository.findByQid(4).get(0)));
 			//5
-			acRepository.save(new AnswerChoice("",qRepository.findByQid(5).get(0)));
+			acRepository.save(new AnswerChoice("",qRepository.findByQid(5).get(0)));*/
 			
 
 		};

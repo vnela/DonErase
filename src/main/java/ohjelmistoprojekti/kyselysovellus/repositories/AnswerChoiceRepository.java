@@ -1,9 +1,7 @@
 package ohjelmistoprojekti.kyselysovellus.repositories;
 
 import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
-
 import ohjelmistoprojekti.kyselysovellus.domain.AnswerChoice;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
 

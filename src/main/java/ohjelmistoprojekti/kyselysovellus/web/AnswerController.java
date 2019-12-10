@@ -41,15 +41,11 @@ public class AnswerController {
 	public Answer submitAnswer(@RequestBody AnswerValuetoQuestion requestAnswer) {
 		
 		String answerInput = requestAnswer.getAnswerInput();
-		
 		Long qid = requestAnswer.getQid();
-		
-		Question question = qRepository.findByQid(qid).get(0);
-				
+		Question question = qRepository.findByQid(qid).get(0);		
 		Answer answer = new Answer(answerInput, question);
 		
 		aRepository.save(answer);
-		
 		return answer;
 	}
 	
@@ -61,37 +57,28 @@ public class AnswerController {
 		
 		List<Answer> answers = new ArrayList<Answer>();
 					
-			for (int i = 0; i < requestAnswers.size(); i++) {
-				
+			for (int i = 0; i < requestAnswers.size(); i++) {	
 				String answerValue = requestAnswers.get(i).getAnswerInput();
-				
 				Long qid = requestAnswers.get(i).getQid();
-				
 				Question question = qRepository.findByQid(qid).get(0);
-						
 				Answer answer = new Answer(answerValue, question);
-				
-				aRepository.save(answer);
-				
+				aRepository.save(answer);	
 				answers.add(answer);
 			}
 			return answers;
 		}
 	
-	//RESTful service to get all answers
+
 	@RequestMapping(value="/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer> getActualAnswersRest(){
-		
 		return (List<Answer>) aRepository.findAll();
 	}
 	
-	//RESTful service to get one answer options by id
+
 	@RequestMapping(value="/answer/{aid}", method=RequestMethod.GET)
 	public @ResponseBody Optional<Answer> findAnswerIdRest(@PathVariable("aid") Long id) {
 		return aRepository.findByAid(id);
 	}
 
 
-
-	
 }
