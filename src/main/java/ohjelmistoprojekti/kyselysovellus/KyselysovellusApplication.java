@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 import ohjelmistoprojekti.kyselysovellus.domain.AnswerChoice;
 import ohjelmistoprojekti.kyselysovellus.domain.Question;
 import ohjelmistoprojekti.kyselysovellus.repositories.AnswerChoiceRepository;
@@ -37,6 +38,7 @@ public class KyselysovellusApplication {
 	public CommandLineRunner questionDemo(QuestionRepository qRepository, AnswerRepository aRepository, AnswerChoiceRepository acRepository) {
 		return (args) -> {
 			log.info("Save some questions");
+
 			//Questions
 	
 			qRepository.save(new Question("Minkä vuoden opiskelija olet?", "radio"));
@@ -66,6 +68,7 @@ public class KyselysovellusApplication {
 			//5
 			acRepository.save(new AnswerChoice("",qRepository.findByQid(5).get(0)));
 			
+
 		};
 	}
 }

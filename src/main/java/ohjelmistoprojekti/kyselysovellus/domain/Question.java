@@ -1,9 +1,11 @@
 package ohjelmistoprojekti.kyselysovellus.domain;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
 
@@ -23,6 +28,7 @@ public class Question {
 	private  String title;
 	private  String type;
 	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("questions")
 	private  List<AnswerChoice> answerChoices;
@@ -37,11 +43,10 @@ public class Question {
 	}
 
 	public Question(String title, String type) {
-		super();
 		this.title = title;
 		this.type = type;
 	}
-
+	
 	public Question(Long qid, String title, String type) {
 		super();
 		this.qid = qid;
@@ -49,12 +54,13 @@ public class Question {
 		this.type = type;
 	}
 
+
 	public Long getQid() {
 		return qid;
 	}
 
-	public void setQid(Long qid) {
-		this.qid = qid;
+	public void setQid(Long id) {
+		this.qid = id;
 	}
 
 	public String getTitle() {

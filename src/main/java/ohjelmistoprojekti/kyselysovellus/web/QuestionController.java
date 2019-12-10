@@ -19,6 +19,8 @@ import ohjelmistoprojekti.kyselysovellus.repositories.AnswerChoiceRepository;
 import ohjelmistoprojekti.kyselysovellus.repositories.QuestionRepository;
 
 public class QuestionController {
+	
+	
 	@Autowired
 	private QuestionRepository qRepository;
 	
@@ -95,6 +97,7 @@ public class QuestionController {
 		model.addAttribute("question", qRepository.findById(id));
 		return "editquestion";
 	}
+
 	
 	//Save method for answerOptions 
 	@RequestMapping(value="/saveoption", method=RequestMethod.POST)
