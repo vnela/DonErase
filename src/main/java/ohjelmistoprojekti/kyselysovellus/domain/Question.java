@@ -1,6 +1,6 @@
 package ohjelmistoprojekti.kyselysovellus.domain;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,40 +12,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
-@Table(name = "questions")
+
 public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long qid;
-	private String title;
-	private String type;
-	
-	/*
-	@ManyToOne
-	@JoinColumn(name = "aid") 
-	//private List<Answer> answers;
-	private Answer answer;*/
-	
-	/*
-	 @OneToMany(cascade=CascadeType.ALL, mappedBy = "question")
-	 @JoinColumn(name="aid")
-	 private List<Answer> answers;*/
-	
-	@OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "question")
-	private List<Answer> answers;
+	private  String title;
+	private  String type;
 	
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties("questions")
+	private  List<AnswerChoice> answerChoices;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnore
+	private  List<Answer> answers;
+
 	public Question() {
 		super();
-		this.qid = null;
-		this.title = null;
-		this.type = null;
+		
 	}
 
 	public Question(String title, String type) {
@@ -53,14 +47,12 @@ public class Question {
 		this.type = type;
 	}
 	
-	/*
 	public Question(Long qid, String title, String type) {
 		super();
 		this.qid = qid;
 		this.title = title;
 		this.type = type;
-	}*/
-	
+	}
 
 
 	public Long getQid() {
@@ -86,23 +78,28 @@ public class Question {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
-	/*
-	public void setAnswers(List<Answer> newAnswers) {
-		this.answers = newAnswers;
+
+	public List<AnswerChoice> getAnswerChoices() {
+		return answerChoices;
 	}
 
-	
+	public void setAnswerChoices(List<AnswerChoice> answerChoices) {
+		this.answerChoices = answerChoices;
+	}
+
 	public List<Answer> getAnswers() {
 		return answers;
-	}*/
+	}
 
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
 
 	@Override
 	public String toString() {
-		return "Question [qid=" + qid + ", title=" + title + ", type=" + type+"]";
+		return "Question [qid=" + qid + ", title=" + title + ", type=" + type + ", answerChoices=" + answerChoices
+				+ ", answers=" + answers + "]";
 	}
-
-
+	
+	
 }

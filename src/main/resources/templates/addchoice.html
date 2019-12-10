@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vaihtoehdon valintalomake</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Vastausvaihtoehto</h1>
+
+	<form action="#" th:action="@{/newchoice}"  th:object= ${answerchoice} method="post">
+	<input type="hidden" th:field= "*{qid}" class="form-control"/>
+	<p>Kysymys: <input type="text" th:field="${question.title}" /></p>
+	<p>Vastausvaihtoehdot: <input type="text" th:field="${answerchoice.value}" /></p>
+	
+	<input type="submit" value="Lähetä" /> <input type="reset" value="Tyhjennä" />
+	</form>
+    
+</body>
+</html>

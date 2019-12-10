@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<head>
+<title>Kysymyslista</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 style="margin: 2%">Kysymykset:</h1>
+		<div class="container">
+		</div>
+	<div style="margin: 3%">
+	</div>
+	<table class="table table-hover">
+	 <thead class="thead-dark">
+		<tr>
+			<th>Id</th>
+			<th>Kysymys</th>
+			<th>Tyyppi</th>
+			<th>Poista</th>
+			<th>Muokkaa</th>
+			
+		</tr>
+
+		<tr th:each="question : ${questions}">
+			<td th:text="${question.qid}">id</td>
+			<td th:text="${question.title}">title</td>
+			<td th:text="${question.type}">type</td>
+			<td><a th:href="@{/deletequestion/{id}(id=${question.qid})}" class="btn btn-danger">Poista</a></td>
+			<td><a th:href="@{/editquestion/{id}(id=${question.qid})}" class="btn btn-warning">Muokkaa</a></td>
+		</tr>
+	</table>
+	<a href="/newquestion" class="btn btn-success">Uusi kysymys</a>
+
+</body>
+</html>
