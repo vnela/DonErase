@@ -23,14 +23,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Question {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long qid;
 	private  String title;
 	private  String type;
 	
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-	@JsonIgnoreProperties("questions")
+	//@JsonIgnoreProperties("questions")
+	@JsonIgnore
 	private  List<AnswerChoice> answerChoices;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
